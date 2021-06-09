@@ -73,7 +73,7 @@ const MainWeatherContent = () => {
         secondAPI(latValue, lonValue);
       })
       .catch(error => {
-        setErrorMessage("Can't load weather data for this location: " + inputValue);
+        setErrorMessage("Can't load weather for this location: " + inputValue);
         console.log(error);
         setSuccess(false);
         setLoading(false);
@@ -86,11 +86,12 @@ const MainWeatherContent = () => {
   
   return (
     <>
+    <div className="main-wrapper">
       <div className="main-weather-content-wrapper">
         <div className={success ? "hidden pre-load-content" : "pre-load-content"}>
-          <p className="load-weather-text">Type in a UK city and find out the current weather</p>
+          <p className="load-weather-text">Type a UK City</p>
           <form onSubmit={handleClick}> 
-            <input type="text" id="city-input" className="input-field" name="city-input" placeholder="Type a city here..." required/>
+            <input type="text" id="city-input" className="input-field" name="city-input" placeholder="London... etc" required/>
             <button type="submit" onClick={handleClick} className={loading ? "disabled load-weather-button" : "load-weather-button"}>{loading ? "Please wait..." : "Load Weather"}</button>
           </form>
         </div>
@@ -101,7 +102,7 @@ const MainWeatherContent = () => {
           location={locationName}
         />
         
-        <div className="error-text">
+        <div className={errorMessage ? "error-text" : "hidden"}>
           <p>{errorMessage}</p>
         </div> 
         
@@ -111,14 +112,15 @@ const MainWeatherContent = () => {
             successful={success}/>
         </div>
 
-        <div className={success ? "new-location-wrapper" : "hidden"}>
+        {/* <div className={success ? "new-location-wrapper" : "hidden"}>
           <p>Enter a new UK city and find the weather</p>
           <form onSubmit={newHandleClick}> 
             <input type="text" id="new-input" className="input-field" name="city-input" placeholder="Type a city here..." required/>
             <button type="submit" onClick={newHandleClick} className={loading ? "disabled load-weather-button" : "load-weather-button"}>{loading ? "Please wait..." : "Load Weather"}</button>
           </form>
-        </div>
+        </div> */}
       </div>
+    </div>
     </>
   )
 }

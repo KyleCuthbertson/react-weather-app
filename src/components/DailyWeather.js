@@ -21,15 +21,16 @@ const DailyWeather = (props) => {
 
       const dailyDate = unixConversion(dailyData[i].dt);
 
-      // console.log(dailyDate.getUTCDay());
+      console.log(dailyDate.getUTCDay());
     }
   }
 
 
   return (
-    <>
+    <> 
+    { successful ?
       <ul className="daily-weather-list">
-        { successful ?
+        { 
           dailyData.map((day) => (
             <li className="each-day" key={day.id}>
               <p className="daily-day-text">{days[day.id]}</p>
@@ -37,9 +38,10 @@ const DailyWeather = (props) => {
               <p className="daily-icon">Icon</p>
             </li>
           ))
-          : ""
         }
       </ul>
+      : ""
+    }
     </>
   )
 }

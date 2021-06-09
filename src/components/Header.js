@@ -1,6 +1,3 @@
-import AppTitle from "./AppTitle";
-
-
 const Header = () => {
   return (
     <>
@@ -10,7 +7,6 @@ const Header = () => {
           <p>KyleKCuthbertson@gmail.com</p>
         </div>
       </header>
-      <AppTitle/>
     </>
   )
 }

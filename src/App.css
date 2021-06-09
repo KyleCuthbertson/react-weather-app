@@ -1,24 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 html, body, h1, h2, h3, h4, h5, h6, *, p {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
-  font-weight: 300;
+  font-weight: 500;
 }
 
-/* Header & Title CSS */
+html, body {
+  background: #2a6caa;
+  background: linear-gradient(#4e9feb, #26629b, #13304d);
+  height: 100%;
+  overflow: auto;
+}
+
+/* Header CSS */
 header {
-  background-color: #2d4b66;
-  height: 90px;
   color: #FFF;
-  padding: 10px;
+  padding: 20px 10px;
+  border-bottom: 2px solid #3d84c7;
 }
 
 .header-creator {
   width: 100%;
-  max-width: 1000px;
+  max-width: 700px;
   margin: 0 auto;
 }
 
@@ -28,29 +34,20 @@ header {
   text-align: right;
 }
 
-.app-title {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 1000px;
-  text-align: center;
-  margin-top: 30px
-}
-
-.app-title h1 {
-  font-size: 36px;
-  color: #2d4b66;
-  font-weight: 500;
-}
-
 
 /* Main Content CSS */
 
+.main-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+}
+
 .main-weather-content-wrapper {
   width: 100%;
-  min-height: 550px;
-  max-width: 1100px;
-  margin: 15px auto;
-  padding: 30px 20px;
+  padding: 15px;
+  color: #FFF;
 }
 
 .pre-load-content {
@@ -60,15 +57,19 @@ header {
 }
 
 .load-weather-text {
-  color: #2d4b66;
-  font-size: 22px;
-  margin-bottom: 20px;
+  color: #FFF;
+  font-size: 30px;
+  margin-bottom: 30px;
   font-weight: 400;
 }
 
 .input-field {
   font-size: 20px;
-  padding: 3px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  min-width: 240px;
+  padding: 10px 5px;
+  border: 0;
 }
 
 .disable {
@@ -77,15 +78,16 @@ header {
 }
 
 .load-weather-button {
-  border: 0;
   color: #FFF;
-  background: #2d4b66;
+  min-width: 240px;
+  background: transparent;
+  border: 2px solid #FFF;
   border-radius: 4px;
-  font-size: 20px;
+  font-size: 22px;
   padding: 10px 25px;
   cursor: pointer;
   display: block;
-  margin: 20px auto;
+  margin: 30px auto;
   transition: 0.4s;
   -webkit-transition: 0.4s;
   -moz-transition: 0.4s;
@@ -93,7 +95,7 @@ header {
   -o-transition: 0.4s;
 }
 .load-weather-button:hover {
-  background: #253d53;
+  background: #10263a;
   transition: 0.4s;
   -webkit-transition: 0.4s;
   -moz-transition: 0.4s;
@@ -103,7 +105,10 @@ header {
 
 .error-text {
   text-align: center;
-  color: #801414;
+  font-size: 18px;
+  color: #b61c1c;
+  background: #10263a;
+  padding: 10px 10px;
 }
 
 .weather-details-wrapper p {
@@ -119,24 +124,25 @@ header {
 
 .daily-weather-wrapper {
   width: 100%;
+  max-width: 900px;
   padding: 10px 5px;
-  margin-top: 40px;
+  margin: 30px 0 75px 0;
 }
 
 .daily-weather-list {
   list-style-type: none;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .daily-weather-list .each-day {
-  border: 2px solid #253d53;
+  border: 2px solid #FFF;
   padding: 10px;
+  margin: 10px;
+  width: 130px;
   border-radius: 4px;
-  width: 12%;
 }
 
 .daily-day-text {
@@ -159,15 +165,16 @@ header {
 
 
 
-/* Footer CSS */
+/* Footer & Misc CSS */
 
 footer {
   width: 100%;
-  padding: 8px;
-  position: fixed;
-  bottom: 0;
+  padding: 8px 10px 45px 10px;
   color: #FFF;
-  background-color: #2d4b66;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(20, 47, 71, 0.9);
 }
 
 footer p {
