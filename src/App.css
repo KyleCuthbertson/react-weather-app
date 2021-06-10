@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 html, body, h1, h2, h3, h4, h5, h6, *, p {
   padding: 0;
@@ -117,8 +117,10 @@ header {
 }
 
 .weather-for {
-  font-size: 30px;
+  font-size: 36px;
   margin-bottom: 20px;
+  border-bottom: 1px solid #FFF;
+  padding-bottom: 10px;
 }
 
 
@@ -126,7 +128,7 @@ header {
   width: 100%;
   max-width: 900px;
   padding: 10px 5px;
-  margin: 30px 0 75px 0;
+  margin: 30px 0 35px 0;
 }
 
 .daily-weather-list {
@@ -152,15 +154,10 @@ header {
 
 .new-location-wrapper {
   max-width: 400px;
-  margin: 20px auto;
+  margin: 20px auto 75px auto;
   padding: 10px;
   border-radius: 4px;
-  background: rgb(231, 231, 231);
   text-align: center;
-}
-.new-location-wrapper p {
-  margin-bottom: 20px;
-  font-size: 20px;
 }
 
 
@@ -169,12 +166,12 @@ header {
 
 footer {
   width: 100%;
-  padding: 8px 10px 45px 10px;
+  padding: 8px 10px 8px 10px;
   color: #FFF;
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: rgba(20, 47, 71, 0.9);
+  background-color: rgba(20, 47, 71, 1);
 }
 
 footer p {

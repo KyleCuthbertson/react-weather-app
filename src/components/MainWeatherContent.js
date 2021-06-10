@@ -61,6 +61,7 @@ const MainWeatherContent = () => {
 
   const newHandleClick = (event) => {
     event.preventDefault();
+    console.log(event);
     inputValue = document.getElementById("new-input").value;
     setLoading(true);
 
@@ -71,6 +72,7 @@ const MainWeatherContent = () => {
         lonValue = res.data.coord.lon;
         setLocationName(inputValue);
         secondAPI(latValue, lonValue);
+        event.target.form.reset(); // Resets form
       })
       .catch(error => {
         setErrorMessage("Can't load weather for this location: " + inputValue);
@@ -112,13 +114,12 @@ const MainWeatherContent = () => {
             successful={success}/>
         </div>
 
-        {/* <div className={success ? "new-location-wrapper" : "hidden"}>
-          <p>Enter a new UK city and find the weather</p>
+        <div className={success ? "new-location-wrapper" : "hidden"}>
           <form onSubmit={newHandleClick}> 
-            <input type="text" id="new-input" className="input-field" name="city-input" placeholder="Type a city here..." required/>
+            <input type="text" id="new-input" className="input-field" name="city-input" placeholder="Manchester... etc" required/>
             <button type="submit" onClick={newHandleClick} className={loading ? "disabled load-weather-button" : "load-weather-button"}>{loading ? "Please wait..." : "Load Weather"}</button>
           </form>
-        </div> */}
+        </div>
       </div>
     </div>
     </>
