@@ -106,9 +106,13 @@ header {
 .error-text {
   text-align: center;
   font-size: 18px;
-  color: #b61c1c;
-  background: #10263a;
-  padding: 10px 10px;
+  color: #c33f3f;
+  background: #0c1c2a;
+  padding: 30px 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 .weather-details-wrapper p {
@@ -157,6 +161,13 @@ header {
   margin: 20px auto 45px auto;
   padding: 10px;
   text-align: center;
+}
+
+.new-location-wrapper p {
+  font-size: 24px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #FFF;
 }
 
 .close-btn {
