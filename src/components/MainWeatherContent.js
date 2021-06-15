@@ -2,6 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import CurrentWeatherDetails from './CurrentWeatherDetails'
 import DailyWeather from './DailyWeather';
+import NewLocationMenu from './NewLocationMenu';
+import FirstLocation from './FirstLocation';
 
 
 const MainWeatherContent = () => {
@@ -85,19 +87,25 @@ const MainWeatherContent = () => {
       setLoading(false);
     }
   }
+
   
   return (
     <>
     <div className="main-wrapper">
       <div className="main-weather-content-wrapper">
-        <div className={success ? "hidden pre-load-content" : "pre-load-content"}>
-          <p className="load-weather-text">Type a UK City</p>
-          <form onSubmit={handleClick}> 
-            <input type="text" id="city-input" className="input-field" name="city-input" placeholder="London... etc" required/>
-            <button type="submit" onClick={handleClick} className={loading ? "disabled load-weather-button" : "load-weather-button"}>{loading ? "Please wait..." : "Load Weather"}</button>
-          </form>
-        </div>
+        
+        <FirstLocation
+        successful={success}
+        loading={loading}
+        handleClick={handleClick}
+        />
 
+        <NewLocationMenu
+        successful={success}
+        loading={loading}
+        newHandleClick={newHandleClick}
+        />
+        
         <CurrentWeatherDetails 
           data={weather} 
           successful={success} 
@@ -114,12 +122,7 @@ const MainWeatherContent = () => {
             successful={success}/>
         </div>
 
-        <div className={success ? "new-location-wrapper" : "hidden"}>
-          <form onSubmit={newHandleClick}> 
-            <input type="text" id="new-input" className="input-field" name="city-input" placeholder="Manchester... etc" required/>
-            <button type="submit" onClick={newHandleClick} className={loading ? "disabled load-weather-button" : "load-weather-button"}>{loading ? "Please wait..." : "Load Weather"}</button>
-          </form>
-        </div>
+        
       </div>
     </div>
     </>

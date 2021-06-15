@@ -154,12 +154,16 @@ header {
 
 .new-location-wrapper {
   max-width: 400px;
-  margin: 20px auto 75px auto;
+  margin: 20px auto 45px auto;
   padding: 10px;
-  border-radius: 4px;
   text-align: center;
 }
 
+.close-btn {
+  color: #FFF;
+  font-size: 30px;
+  cursor: pointer;
+}
 
 
 /* Footer & Misc CSS */

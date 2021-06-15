@@ -1,27 +1,25 @@
 
 const DailyWeather = (props) => {
 
-  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  const days = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-  let dailyData = props.data.daily;
+  let dailyData = props.data.daily
+
   const successful = props.successful;
 
+  let today = new Date();
+  today = today.getUTCDay();
 
   const unixConversion = (dt) => {
     const milliseconds = dt * 1000;
     const dateObject = new Date(milliseconds);
-    const humanDateFormat = dateObject;
-    return humanDateFormat;
+    return dateObject;
   }
 
   if (successful) {
     for (let i = 0; i < dailyData.length; i++ ) {
       dailyData[i].id = i;
-      console.log(dailyData[i]);
-
       const dailyDate = unixConversion(dailyData[i].dt);
-
-      console.log(dailyDate.getUTCDay());
     }
   }
 
@@ -33,9 +31,12 @@ const DailyWeather = (props) => {
         { 
           dailyData.map((day) => (
             <li className="each-day" key={day.id}>
-              <p className="daily-day-text">{days[day.id]}</p>
-              <p className="daily-weather-text">Weather</p>
-              <p className="daily-icon">Icon</p>
+              <p className="daily-day-text">{day.id === today ? "Today" : days[day.id]}</p>
+              <p className="daily-weather-text">{day.weather[0].main}</p>
+              <p className="daily-icon">{day.weather[0].icon}</p>
+              <p className="daily-min">Min: {Math.round(day.temp.min) + "\u00b0C"}</p>
+              <p className="daily-max">Max: {Math.round(day.temp.max) + "\u00b0C"}</p>
+
             </li>
           ))
         }
