@@ -10,16 +10,16 @@ const DailyWeather = (props) => {
   let today = new Date();
   today = today.getUTCDay();
 
-  const unixConversion = (dt) => {
-    const milliseconds = dt * 1000;
-    const dateObject = new Date(milliseconds);
-    return dateObject;
-  }
+  // const unixConversion = (dt) => {
+  //   const milliseconds = dt * 1000;
+  //   const dateObject = new Date(milliseconds);
+  //   return dateObject;
+  // }
 
   if (successful) {
     for (let i = 0; i < dailyData.length; i++ ) {
       dailyData[i].id = i;
-      const dailyDate = unixConversion(dailyData[i].dt);
+      // const dailyDate = unixConversion(dailyData[i].dt);
     }
   }
 

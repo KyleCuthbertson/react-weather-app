@@ -20,6 +20,7 @@ const MainWeatherContent = () => {
   let latValue, lonValue;
   let inputValue = "";
 
+  // Second API call to fetch the lat and long values
   const secondAPI = (lat, lon) => {
     axios.get("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&units=metric&appid=a644c4e60e98896a838f0b5c00c7bfef")
     .then(res => {
@@ -29,7 +30,11 @@ const MainWeatherContent = () => {
       setSuccess(true);
     })
     .catch(error => {
-      setErrorMessage("Can't load weather data for this location: " + inputValue);
+      if (error.request.status === 404 ) {
+        setErrorMessage("Location " + inputValue + " doesn't exist");
+      } else {
+        setErrorMessage("Can't load weather data for this location: " + inputValue);
+      }      
       console.log(error);
       setSuccess(false);
       setLoading(false);
@@ -38,35 +43,15 @@ const MainWeatherContent = () => {
 
   const handleClick = (event) => {
     event.preventDefault();
-    inputValue = document.getElementById("city-input").value;
-    setLoading(true);
-    if (inputValue !== "" && inputValue !== null) {
-      axios.get("http://api.openweathermap.org/data/2.5/weather?q="+ inputValue + ",uk&units=metric&APPID=a644c4e60e98896a838f0b5c00c7bfef")
-      .then(res => {
-        latValue = res.data.coord.lat;
-        lonValue = res.data.coord.lon;
-        setLocationName(inputValue);
-        secondAPI(latValue, lonValue);
-      })
-      .catch(error => {
-        setErrorMessage("Can't load weather data for this location: " + inputValue);
-        console.log(error);
-        setSuccess(false);
-        setLoading(false);
-      })
+    
+    // Checks which form submits for API call (either first form or new location form)
+    if (event.target.id.indexOf("new-location") > -1 ) {
+      inputValue = document.getElementById("new-input").value;
+    } else {
+      inputValue = document.getElementById("first-input").value;
     }
-    else {
-      setErrorMessage("Please enter a value!");
-      setLoading(false);
-    }
-  }
 
-  const newHandleClick = (event) => {
-    event.preventDefault();
-    console.log(event);
-    inputValue = document.getElementById("new-input").value;
     setLoading(true);
-
     if (inputValue !== "" && inputValue !== null) {
       axios.get("http://api.openweathermap.org/data/2.5/weather?q="+ inputValue + ",uk&units=metric&APPID=a644c4e60e98896a838f0b5c00c7bfef")
       .then(res => {
@@ -77,12 +62,17 @@ const MainWeatherContent = () => {
         event.target.form.reset(); // Resets form
       })
       .catch(error => {
-        setErrorMessage("Can't load weather for this location: " + inputValue);
+        if (error.request.status === 404 ) {
+          setErrorMessage("Location " + inputValue + " doesn't exist");
+        } else {
+          setErrorMessage("Can't load weather data for this location: " + inputValue);
+        }
         console.log(error);
         setSuccess(false);
         setLoading(false);
       })
-    } else {
+    }
+    else {
       setErrorMessage("Please enter a value!");
       setLoading(false);
     }
@@ -95,15 +85,15 @@ const MainWeatherContent = () => {
       <div className="main-weather-content-wrapper">
         
         <FirstLocation
-        successful={success}
-        loading={loading}
-        handleClick={handleClick}
+          successful={success}
+          loading={loading}
+          handleClick={handleClick}
         />
 
         <NewLocationMenu
-        successful={success}
-        loading={loading}
-        newHandleClick={newHandleClick}
+          successful={success}
+          loading={loading}
+          handleClick={handleClick}
         />
         
         <CurrentWeatherDetails 

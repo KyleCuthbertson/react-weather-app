@@ -2,13 +2,13 @@
 
 ## Overview
 
-This application will use the Open Weather API to find out the current weather for a user-specified location. The application has been built using React.js. 
-Features: 
-  • Optimised for Mobile and Desktop
-  • Find a location of any UK city
-  • Able to find a new location by toggling "Open New Location" button
-  • Shows current day, temperature (and what it feels like), pressure, humidity, wind speed and timezone.
-  • Shows a 7 day forecast for the user-specified location
+This application will use the Open Weather API to find out the current weather for a user-specified location. The application has been built using React.js. <br/>
+Features: <br/>
+  • Optimised for Mobile and Desktop<br/>
+  • Find a location of any UK city<br/>
+  • Able to find a new location by toggling "Open New Location" button<br/>
+  • Shows current day, temperature (and what it feels like), pressure, humidity, wind speed and timezone.<br/>
+  • Shows a 7 day forecast for the user-specified location<br/>
 
 ## Available Scripts
 
