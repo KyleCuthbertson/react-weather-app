@@ -67,7 +67,7 @@ header {
   font-size: 20px;
   box-sizing: border-box;
   border-radius: 4px;
-  min-width: 240px;
+  min-width: 220px;
   padding: 10px 5px;
   border: 0;
 }
@@ -79,7 +79,7 @@ header {
 
 .load-weather-button {
   color: #FFF;
-  min-width: 240px;
+  min-width: 220px;
   background: transparent;
   border: 2px solid #FFF;
   border-radius: 4px;
@@ -159,9 +159,9 @@ header {
 .new-location-wrapper {
   max-width: 500px;
   margin: 20px auto 45px auto;
-  padding: 40px;
+  padding: 20px;
   text-align: center;
-  background: #10263a;
+  background: #1f4f7c;
   border-radius: 6px;
 }
 
@@ -215,5 +215,8 @@ footer .copyright-text {
   }
   .load-weather-text {
     font-size: 36px;
+  }
+  .new-location-wrapper {
+    padding: 35px;
   }
 }
