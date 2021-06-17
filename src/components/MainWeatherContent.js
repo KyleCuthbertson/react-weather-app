@@ -4,15 +4,13 @@ import CurrentWeatherDetails from './CurrentWeatherDetails'
 import DailyWeather from './DailyWeather';
 import NewLocationMenu from './NewLocationMenu';
 import FirstLocation from './FirstLocation';
-
+import { CSSTransition } from 'react-transition-group';
 
 const MainWeatherContent = () => {
 
-  // const currentApiLink = "http://api.openweathermap.org/data/2.5/weather?q=Portsmouth,uk&units=metric&APPID=a644c4e60e98896a838f0b5c00c7bfef";
-  // const dailyApiLink = "https://api.openweathermap.org/data/2.5/onecall?lat=50.799&lon=-1.0913&units=metric&appid=a644c4e60e98896a838f0b5c00c7bfef"
-
   const [weather, setWeather] = useState([]);
   const [success, setSuccess] = useState(false); // True if the API request successful
+  const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false); // Loading while fetching data from API
   const [locationName, setLocationName] = useState("");
@@ -25,9 +23,11 @@ const MainWeatherContent = () => {
     axios.get("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&units=metric&appid=a644c4e60e98896a838f0b5c00c7bfef")
     .then(res => {
       setWeather(res.data);
+      setIsError(false);
       setErrorMessage(null);
       setLoading(false);
       setSuccess(true);
+      
     })
     .catch(error => {
       if (error.request.status === 404 ) {
@@ -35,7 +35,10 @@ const MainWeatherContent = () => {
       } else {
         setErrorMessage("Can't load weather data for this location: " + inputValue);
       }      
-      console.log(error);
+      setIsError(true);
+      setTimeout(function() {
+        setIsError(false);
+      }, 5000);
       setSuccess(false);
       setLoading(false);
     })
@@ -60,6 +63,7 @@ const MainWeatherContent = () => {
         setLocationName(inputValue);
         secondAPI(latValue, lonValue);
         event.target.form.reset(); // Resets form
+        setIsError(false);
       })
       .catch(error => {
         if (error.request.status === 404 ) {
@@ -67,7 +71,10 @@ const MainWeatherContent = () => {
         } else {
           setErrorMessage("Can't load weather data for this location: " + inputValue);
         }
-        console.log(error);
+        setIsError(true);
+        setTimeout(function() {
+          setIsError(false);
+        }, 5000);
         setSuccess(false);
         setLoading(false);
       })
@@ -75,6 +82,10 @@ const MainWeatherContent = () => {
     else {
       setErrorMessage("Please enter a value!");
       setLoading(false);
+      setIsError(true);
+      setTimeout(function() {
+        setIsError(false);
+      }, 5000);
     }
   }
 
@@ -82,36 +93,39 @@ const MainWeatherContent = () => {
   return (
     <>
     <div className="main-wrapper">
-      <div className="main-weather-content-wrapper">
         
-        <FirstLocation
-          successful={success}
-          loading={loading}
-          handleClick={handleClick}
-        />
+        <CSSTransition in={isError} timeout={500} classNames="transition">
+          <div className={isError ? "error-text" : "hidden"}>
+            <p>{errorMessage}</p>
+          </div>
+        </CSSTransition> 
 
-        <NewLocationMenu
-          successful={success}
-          loading={loading}
-          handleClick={handleClick}
-        />
+          <NewLocationMenu
+            successful={success}
+            loading={loading}
+            handleClick={handleClick}
+          />
+
+      <div className="main-weather-content-wrapper">  
+        <CSSTransition out={success} timeout={500} classNames="transition">
+          <FirstLocation
+            successful={success}
+            loading={loading}
+            handleClick={handleClick}
+          />
+        </CSSTransition> 
         
         <CurrentWeatherDetails 
           data={weather} 
           successful={success} 
           location={locationName}
         />
-        
-        <div className={errorMessage ? "error-text" : "hidden"}>
-          <p>{errorMessage}</p>
-        </div> 
-        
+
         <div className="daily-weather-wrapper">
           <DailyWeather 
             data={weather} 
             successful={success}/>
         </div>
-
         
       </div>
     </div>

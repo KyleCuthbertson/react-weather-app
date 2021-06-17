@@ -113,6 +113,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 100000;
 }
 
 .weather-details-wrapper p {
@@ -156,25 +157,59 @@ header {
 }
 
 
+
+/* Menu CSS */
+
 .new-location-wrapper {
-  max-width: 500px;
-  margin: 20px auto 45px auto;
-  padding: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#2c6192, #12314e, #0c1c2a);
   text-align: center;
-  background: #1f4f7c;
-  border-radius: 6px;
+  color: #FFF;
+  z-index: 10000;
 }
 
-.new-location-wrapper p {
+.new-location-menu {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.new-location-menu p {
   font-size: 24px;
   padding-bottom: 10px;
   margin-bottom: 15px;
 }
 
-.close-btn {
+
+.close-new-location-menu, .open-new-location-menu {
   color: #FFF;
   font-size: 30px;
   cursor: pointer;
+}
+
+.close-new-location-menu {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.open-new-location-menu {
+  position: absolute;
+  left: 0px;
+  top: 25px;
+  padding: 10px;
+  width: 50px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  text-align: center;
+  background: #28639b;
 }
 
 
@@ -204,6 +239,55 @@ footer .copyright-text {
 .hidden {
   display: none;
 }
+
+
+.transition-enter {
+  opacity: 0;
+  transform: translate(0, -10px);
+}
+
+.transition-enter-active {
+  opacity: 1;
+  transform: translate(0, 0);
+  transition: all 300ms ease-in;
+}
+
+.transition-exit {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.transition-exit-active {
+  opacity: 0;
+  transform: translate(0, -10px);
+  transition: all 300ms ease-in;
+}
+
+
+
+.weatherTransition-enter {
+  opacity: 0;
+  transform: translate(50px, 0);
+}
+
+.weatherTransition-enter-active {
+  opacity: 1;
+  transform: translate(0, 0);
+  transition: all 600ms ease-in;
+}
+
+.weatherTransition-exit {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.weatherTransition-exit-active {
+  opacity: 0;
+  transform: translate(50px, 0);
+  transition: all 600ms ease-in;
+}
+
+
 
 
 @media screen and (min-width: 768px ) {

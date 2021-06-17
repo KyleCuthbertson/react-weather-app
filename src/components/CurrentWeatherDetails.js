@@ -1,3 +1,5 @@
+import { CSSTransition } from 'react-transition-group';
+
 const CurrentWeatherDetails = (props) => {
 
   const { data, successful, location } = props;
@@ -18,15 +20,17 @@ const CurrentWeatherDetails = (props) => {
   
   return (
     <>
-      <div className={successful ? "weather-details-wrapper" : "hidden"}>
-        <h2 className="weather-for">Weather for {location}</h2>
-        <p className="day-text">Day: {days[currentDay]}</p>
-        <p className="temp-current">Currently: {successful ? Math.round(data.current.temp) + "\u00b0C (feels like " + Math.round(data.current.feels_like) + "\u00b0C)" : "N/A"}</p>
-        <p className="pressure">Pressure: {successful ? Math.round(data.current.pressure) + " mb" : "N/A"} </p>
-        <p className="humidity">Humidity: {successful ? Math.round(data.current.humidity) + "%" : "N/A"} </p>
-        <p className="windspeed">Wind Speed: {successful ? Math.round(windSpeed) + " mph" : "N/A"} </p>
-        <p className="location-text">Timezone: {data.timezone}</p>
-      </div>
+      <CSSTransition in={successful} timeout={750} classNames="weatherTransition">
+        <div className={successful ? "weather-details-wrapper" : "hidden"}>
+          <h2 className="weather-for">Weather for {location}</h2>
+          <p className="day-text">Day: {days[currentDay]}</p>
+          <p className="temp-current">Currently: {successful ? Math.round(data.current.temp) + "\u00b0C (feels like " + Math.round(data.current.feels_like) + "\u00b0C)" : "N/A"}</p>
+          <p className="pressure">Pressure: {successful ? Math.round(data.current.pressure) + " mb" : "N/A"} </p>
+          <p className="humidity">Humidity: {successful ? Math.round(data.current.humidity) + "%" : "N/A"} </p>
+          <p className="windspeed">Wind Speed: {successful ? Math.round(windSpeed) + " mph" : "N/A"} </p>
+          <p className="location-text">Timezone: {data.timezone}</p>
+        </div>
+      </CSSTransition>
     </>
   )
 }
