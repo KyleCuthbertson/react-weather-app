@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { CSSTransition } from 'react-transition-group';
 
 const NewLocationMenu = (props) => {
 
@@ -11,7 +12,8 @@ const NewLocationMenu = (props) => {
 
   return (
     <>
-      <div className={successful && newLocationToggle ? "new-location-wrapper" : "hidden"}>
+    <CSSTransition in={newLocationToggle} timeout={400} classNames="menuTransition">
+      <div className={successful && newLocationToggle ? "new-location-wrapper" : null}>
         <div className={newLocationToggle ? "new-location-menu" : "hidden"}>
           <div className="new-location-content">
             <p>Try a different location</p>
@@ -23,6 +25,7 @@ const NewLocationMenu = (props) => {
           </div>
         </div>
       </div>
+    </CSSTransition>
       <span id="newLocationOpen" onClick={() => {setNewLocationToggle(true)}} className={newLocationToggle || successful ? "open-new-location-menu" : "hidden"}><i className="fas fa-search-location"></i></span>
     </>
   )

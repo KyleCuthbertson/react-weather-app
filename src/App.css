@@ -42,6 +42,7 @@ header {
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+  max-width: 750px;
 }
 
 .main-weather-content-wrapper {
@@ -172,6 +173,7 @@ header {
   z-index: 10000;
 }
 
+
 .new-location-menu {
   width: 100%;
   height: 100%;
@@ -238,6 +240,7 @@ footer .copyright-text {
 
 .hidden {
   display: none;
+  transition: all 300ms ease-in;
 }
 
 
@@ -267,13 +270,13 @@ footer .copyright-text {
 
 .weatherTransition-enter {
   opacity: 0;
-  transform: translate(50px, 0);
+  transform: translate(-50px, 0);
 }
 
 .weatherTransition-enter-active {
   opacity: 1;
   transform: translate(0, 0);
-  transition: all 600ms ease-in;
+  transition: all 750ms ease-in;
 }
 
 .weatherTransition-exit {
@@ -284,7 +287,29 @@ footer .copyright-text {
 .weatherTransition-exit-active {
   opacity: 0;
   transform: translate(50px, 0);
-  transition: all 600ms ease-in;
+  transition: all 750ms ease-in;
+}
+
+
+
+
+.menuTransition-enter {
+  opacity: 0;
+}
+
+.menuTransition-enter-active {
+  opacity: 1;
+  transition: all 400ms ease-in;
+}
+
+.menuTransition-exit {
+  opacity: 1;
+  transition: all 400ms ease-out;
+}
+
+.menuTransition-exit-done {
+  opacity: 0;
+  transition: all 400ms ease-out;
 }
 
 
