@@ -1,3 +1,7 @@
+import sun from '../imgs/sun.png';
+import rain from '../imgs/rain.png';
+import suncloud from '../imgs/suncloud.png';
+
 
 const DailyWeather = (props) => {
 
@@ -23,7 +27,17 @@ const DailyWeather = (props) => {
     }
   }
 
-
+  const weatherIcon = (icon) => {
+    switch(icon) {
+      case "Clear":
+        return sun;
+      case "Rain":
+        return rain;
+      case "Clouds":
+        return suncloud;
+    }
+  }
+  
   return (
     <> 
     { successful ?
@@ -33,7 +47,10 @@ const DailyWeather = (props) => {
             <li className="each-day" key={day.id}>
               <p className="daily-day-text">{day.id === today ? "Today" : days[day.id]}</p>
               <p className="daily-weather-text">{day.weather[0].main}</p>
-              <p className="daily-icon">{day.weather[0].icon}</p>
+              <p className="daily-icon">
+                <img src={weatherIcon(day.weather[0].main)} alt={day.weather[0].main}/>
+              </p>
+                
               <p className="daily-min">Min: {Math.round(day.temp.min) + "\u00b0C"}</p>
               <p className="daily-max">Max: {Math.round(day.temp.max) + "\u00b0C"}</p>
 
