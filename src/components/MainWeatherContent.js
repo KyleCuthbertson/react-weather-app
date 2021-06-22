@@ -27,7 +27,6 @@ const MainWeatherContent = () => {
       setErrorMessage(null);
       setLoading(false);
       setSuccess(true);
-      
     })
     .catch(error => {
       if (error.request.status === 404 ) {
