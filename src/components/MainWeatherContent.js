@@ -101,11 +101,11 @@ const MainWeatherContent = () => {
           </div>
         </CSSTransition> 
 
-          <NewLocationMenu
-            successful={success}
-            loading={loading}
-            handleClick={handleClick}
-          />
+        <NewLocationMenu
+          successful={success}
+          loading={loading}
+          handleClick={handleClick}
+        />
 
       <div className="main-weather-content-wrapper">  
         <CSSTransition out={success} timeout={500} classNames="transition">

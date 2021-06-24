@@ -13,6 +13,7 @@ html, body {
   background: linear-gradient(#4e9feb, #26629b, #0c1c2a);
   height: 100%;
   overflow: auto;
+  padding-bottom: 20px;
 }
 
 /* Header CSS */
@@ -123,28 +124,39 @@ header {
 }
 
 .daily-weather-list .each-day {
-  border: 2px solid #FFF;
   padding: 10px;
   margin: 10px;
   width: 200px;
   border-radius: 4px;
   text-align: center;
-  cursor: pointer;
 }
 
 .daily-weather-list .today {
   width: 95%;
-  padding: 15px 5px 15px 5px;
+  padding: 15px 0px 15px 0px;
   margin-bottom: 10px;
-  border-bottom: 2px solid #FFF;
+  /* border-bottom: 2px solid #FFF; */
   text-align: center;
-  cursor: pointer;
 }
 
 .today .daily-day-text {
   font-weight: bold;
   font-size: 32px;
   margin-bottom: 5px;
+}
+
+.each-day .daily-day-text {
+  font-size: 22px;
+  margin-bottom: 3px;
+}
+
+.today > p {
+  font-size: 18px;
+}
+
+.today .daily-icon img {
+  width: 120px;
+  height: 120px;
 }
 
 .daily-icon img {
@@ -155,6 +167,36 @@ header {
 .daily-weather-text {
   margin-bottom: 10px;
 }
+
+
+.hour-wrapper {
+  width: 100%;
+  height: 130px;
+  list-style-type: none;
+  max-height: 130px;
+  border: 2px solid #FFF;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  box-shadow: inset -15px 0 9px -7px rgba(0,0,0,0.4);
+}
+
+.hour-wrapper li {
+  min-width: 85px;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.hour-number {
+  font-size: 16px;
+}
+
+.hourly-icon img {
+  width: 50px;
+  height: 50px;
+}
+
 
 
 /* Menu CSS */

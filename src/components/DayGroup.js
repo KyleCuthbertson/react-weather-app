@@ -8,7 +8,8 @@ import suncloud from '../imgs/suncloud.png';
 
 const DayGroup = (props) => {
 
-  let dailyData = props.data.daily
+  let dailyData = props.data.daily;
+  let hourlyData = props.data.hourly;
 
   const successful = props.successful;
 
@@ -58,21 +59,16 @@ const DayGroup = (props) => {
     }
   }
 
-  const openDay = (id) => {
-    console.log(id);
-  }
-  
-
   return (
     <> 
     { successful ?
       <ul className="daily-weather-list">
         <Day 
         dailyData={dailyData}
+        hourlyData={hourlyData}
         getDaysOfWeek={getDaysOfWeek}
         weatherIcon={weatherIcon}
         conversion={unixConversion}
-        openDay={openDay}
         />
       </ul>
       : ""
