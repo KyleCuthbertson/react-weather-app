@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
+import LoadWeatherBtn from './LoadWeatherBtn';
+
 const NewLocationMenu = (props) => {
 
   const { successful, loading, handleClick } = props;
@@ -19,7 +21,7 @@ const NewLocationMenu = (props) => {
             <p>Try a different location</p>
             <form onSubmit={handleClick}> 
               <input type="text" id="new-input" className="input-field" name="city-input" placeholder="Manchester... etc" required/>
-              <button type="submit" id="new-location-submit" onClick={handleClick} className="load-weather-button">{loading ? "Please wait..." : "Load Weather"}</button>
+              <LoadWeatherBtn id="new-location-submit" handleClick={handleClick} loading={loading}/>
             </form>
             <span id="newLocationClose" onClick={() => {setNewLocationToggle(false)}} className="close-new-location-menu"><i className="fas fa-times"></i></span>
           </div>

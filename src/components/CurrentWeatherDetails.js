@@ -22,7 +22,7 @@ const CurrentWeatherDetails = (props) => {
     <>
       <CSSTransition in={successful} timeout={750} classNames="weatherTransition">
         <div className={successful ? "weather-details-wrapper" : "hidden"}>
-          <h2 className="weather-for">Weather for {location}</h2>
+          <h2 className="weather-for">{location}</h2>
           <p className="day-text">Day: {days[currentDay]}</p>
           <p className="temp-current">Currently: {successful ? Math.round(data.current.temp) + "\u00b0C (feels like " + Math.round(data.current.feels_like) + "\u00b0C)" : "N/A"}</p>
           <p className="pressure">Pressure: {successful ? Math.round(data.current.pressure) + " mb" : "N/A"} </p>

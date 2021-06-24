@@ -1,15 +1,16 @@
+import Day from "./Day";
+
+// image import
 import sun from '../imgs/sun.png';
 import rain from '../imgs/rain.png';
 import suncloud from '../imgs/suncloud.png';
 
 
-const DailyWeather = (props) => {
+const DayGroup = (props) => {
 
-  // let dailyDate;
   let dailyData = props.data.daily
 
   const successful = props.successful;
-
 
   const unixConversion = (dt) => {
     const milliseconds = dt * 1000;
@@ -20,7 +21,6 @@ const DailyWeather = (props) => {
   if (successful) {
     for (let i = 0; i < dailyData.length; i++ ) {
       dailyData[i].id = i;
-      // dailyDate = unixConversion(dailyData[i].dt);
     }
   }
 
@@ -57,27 +57,23 @@ const DailyWeather = (props) => {
         return "N/A";
     }
   }
+
+  const openDay = (id) => {
+    console.log(id);
+  }
   
+
   return (
     <> 
     { successful ?
       <ul className="daily-weather-list">
-        { 
-          dailyData.map((day) => (
-            <li className="each-day" key={day.id}>
-              {console.log(day)}
-              <p className="daily-day-text">{day.id === 0 ? "Today" : getDaysOfWeek(unixConversion(day.dt).getDay())}</p>
-              <p className="daily-weather-text">{day.weather[0].main}</p>
-              <p className="daily-icon">
-                <img src={weatherIcon(day.weather[0].main)} alt={day.weather[0].main}/>
-              </p>
-                
-              <p className="daily-min">Min: {Math.round(day.temp.min) + "\u00b0C"}</p>
-              <p className="daily-max">Max: {Math.round(day.temp.max) + "\u00b0C"}</p>
-
-            </li>
-          ))
-        }
+        <Day 
+        dailyData={dailyData}
+        getDaysOfWeek={getDaysOfWeek}
+        weatherIcon={weatherIcon}
+        conversion={unixConversion}
+        openDay={openDay}
+        />
       </ul>
       : ""
     }
@@ -86,4 +82,4 @@ const DailyWeather = (props) => {
 }
 
 
-export default DailyWeather;
+export default DayGroup;

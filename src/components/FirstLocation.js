@@ -1,3 +1,5 @@
+import LoadWeatherBtn from './LoadWeatherBtn';
+
 const FirstLocation = (props) => {
 
   const {successful, loading, handleClick} = props;
@@ -7,7 +9,10 @@ const FirstLocation = (props) => {
       <p className="load-weather-text">Type a UK City</p>
       <form onSubmit={handleClick}> 
         <input type="text" id="first-input" className="input-field" name="city-input" placeholder="London... etc" required/>
-        <button type="submit" onClick={handleClick} className={loading ? "disabled load-weather-button" : "load-weather-button"}>{loading ? "Please wait..." : "Load Weather"}</button>
+        <LoadWeatherBtn  
+        handleClick={handleClick}
+        loading={loading}
+        />
       </form>
     </div>
   )

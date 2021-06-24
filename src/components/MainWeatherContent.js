@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { CSSTransition } from 'react-transition-group';
+
+// Components
 import CurrentWeatherDetails from './CurrentWeatherDetails'
-import DailyWeather from './DailyWeather';
+import DayGroup from './DayGroup';
 import NewLocationMenu from './NewLocationMenu';
 import FirstLocation from './FirstLocation';
-import { CSSTransition } from 'react-transition-group';
+
 
 const MainWeatherContent = () => {
 
@@ -20,7 +23,7 @@ const MainWeatherContent = () => {
 
   // Second API call to fetch the lat and long values
   const secondAPI = (lat, lon) => {
-    axios.get("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&units=metric&appid=a644c4e60e98896a838f0b5c00c7bfef")
+    axios.get("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely&units=metric&appid=a644c4e60e98896a838f0b5c00c7bfef")
     .then(res => {
       setWeather(res.data);
       setIsError(false);
@@ -87,7 +90,6 @@ const MainWeatherContent = () => {
       }, 5000);
     }
   }
-
   
   return (
     <>
@@ -112,7 +114,7 @@ const MainWeatherContent = () => {
             loading={loading}
             handleClick={handleClick}
           />
-        </CSSTransition> 
+        </CSSTransition>
         
         <CurrentWeatherDetails 
           data={weather} 
@@ -121,7 +123,7 @@ const MainWeatherContent = () => {
         />
 
         <div className="daily-weather-wrapper">
-          <DailyWeather 
+          <DayGroup 
             data={weather} 
             successful={success}/>
         </div>
