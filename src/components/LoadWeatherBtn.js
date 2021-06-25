@@ -4,7 +4,7 @@ const LoadWeatherButton = styled.button`
   color: #FFF;
   min-width: 220px;
   background: transparent;
-  border: 2px solid #FFF;
+  border: 3px solid #FFF;
   border-radius: 4px;
   font-size: 22px;
   padding: 10px 25px;
@@ -23,6 +23,10 @@ const LoadWeatherButton = styled.button`
     -moz-transition: 0.4s;
     -ms-transition: 0.4s;
     -o-transition: 0.4s;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: 28px;
+    min-width: 280px;
   }
 `
 

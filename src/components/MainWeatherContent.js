@@ -11,12 +11,12 @@ import FirstLocation from './FirstLocation';
 
 const MainWeatherContent = () => {
 
-  const [weather, setWeather] = useState([]);
+  const [weather, setWeather] = useState([]); // Data sits inside this state
   const [success, setSuccess] = useState(false); // True if the API request successful
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false); // Loading while fetching data from API
-  const [locationName, setLocationName] = useState("");
+  const [locationName, setLocationName] = useState(""); // Name of location user has inputted
 
   let latValue, lonValue;
   let inputValue = "";
@@ -30,6 +30,7 @@ const MainWeatherContent = () => {
       setErrorMessage(null);
       setLoading(false);
       setSuccess(true);
+      console.log(res.data);
     })
     .catch(error => {
       if (error.request.status === 404 ) {

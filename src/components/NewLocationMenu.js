@@ -3,6 +3,8 @@ import { CSSTransition } from 'react-transition-group';
 
 import LoadWeatherBtn from './LoadWeatherBtn';
 
+// This component is for the user to select a new location using the menu button 
+// located on the top-left portion of the React application
 const NewLocationMenu = (props) => {
 
   const { successful, loading, handleClick } = props;
